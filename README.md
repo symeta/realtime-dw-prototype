@@ -12,3 +12,7 @@ The flink CDC module originally deployed on EMR cluster plays as consumer of tho
 
 Finally, these processed CDC data is written into Hudi@EMR cluster.
 
+The architectural diagram for this prototype is as below:
+
+<img width="856" alt="image" src="https://user-images.githubusercontent.com/97269758/162618796-823f3341-f1ce-4dfe-a5e7-d806544033ff.png">
+
