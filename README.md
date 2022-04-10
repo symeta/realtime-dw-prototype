@@ -7,3 +7,17 @@ In order that the Mysql instance CDC data can be captured by debezium server, th
 the binlog_format parameter is set to ROW. the snapshot is shown as below:
 
 <img width="1277" alt="Screen Shot 2022-04-10 at 9 00 40 PM" src="https://user-images.githubusercontent.com/97269758/162619437-4fa8116e-a4fc-40ec-aad9-c2922acb4873.png">
+
+Make sure that the security group for the Mysql instance allows 3306 port ingress traffic from specific destinations.
+<img width="725" alt="Screen Shot 2022-04-10 at 9 04 07 PM" src="https://user-images.githubusercontent.com/97269758/162619558-f95b1828-c9f9-401d-a28c-d40b457e3d03.png">
+
+Log in the Mysql command line console through the command below:
+```sh
+mysql -u admin -h <mysql instance endpoint> -p
+```
+
+Create a database named as salesdb.
+```sql
+create database salesdb;
+use salesdb;
+```
