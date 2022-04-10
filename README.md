@@ -9,7 +9,7 @@ In order to have the kafka topics auto-created mapping the tables in mysql datab
 <img width="1428" alt="Screen Shot 2022-04-10 at 10 18 38 PM" src="https://user-images.githubusercontent.com/97269758/162623780-dc7f185f-2ec7-4fa3-a358-18304e244901.png">
 
 Add the following command to in the code session of the configration creation console 
-```sh
+```vim
 auto.create.topics.enable=true
 ```
 
