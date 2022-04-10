@@ -1,6 +1,6 @@
 # table of content
 
-- [1. Architecture Overview]()
+- [1. Architecture Overview](https://github.com/symeta/realtime-dw-prototype/blob/architecture-overview/README.md)
 - [2. Provision Mysql Instance]()
 - [3. Provision MSK cluster]()
 - [4. Provision EMR Cluster]()
