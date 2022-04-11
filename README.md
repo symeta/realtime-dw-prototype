@@ -5,5 +5,5 @@
 - [3. Provision MSK cluster](https://github.com/symeta/realtime-dw-prototype/tree/Provision-MSK-cluster)
 - [4. Provision EMR Cluster](https://github.com/symeta/realtime-dw-prototype/tree/Provision-EMR-Cluster)
 - [5. Set up Debezium Server](https://github.com/symeta/realtime-dw-prototype/tree/Set-up-Debezium-Server)
-- [6. Validate the connection between Mysql Instance and MSK cluster (MSK Producer)]
+- [6. Validate the connection between Mysql Instance and MSK cluster (MSK Producer)](https://github.com/symeta/realtime-dw-prototype/tree/Validate-the-connection-between-Mysql-Instance-and-MSK-cluster-(MSK-Producer))
 - [7. Validate the connection between MSK cluster and Hudi (MSK consumer via flink@emr)]
