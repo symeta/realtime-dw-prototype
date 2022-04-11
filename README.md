@@ -1,10 +1,14 @@
 # Validate the connection between MSK cluster and Hudi (MSK consumer via flink@emr)
 
-## access the emr master ec2
+## Access the emr master node ec2 as root user
+Open a terminal as the client for flink
 
 ```sh
 sudo -s
+```
+## Create a Flink session
 
+```sh
 flink-yarn-session -jm 1024 -tm 4096 -s 2  \
 -D state.checkpoints.dir=s3://msk-lab-emr-log/flink/checkpoints \
 -D state.backend=rocksdb \
@@ -18,7 +22,9 @@ flink-yarn-session -jm 1024 -tm 4096 -s 2  \
 -D rest.flamegraph.enabled=true \
 -d
 ```
-make sure that the s3 bucket has been created.
+*Make sure that the s3 bucket has been created.*
+
+## Create a Flink applicaiton
 
 ```sh
 /usr/lib/flink/bin/sql-client.sh -s application_1111
@@ -80,7 +86,7 @@ set sql-client.execution.result-mode=tableau;
 set 'parallelism.default' = '1';
 ```
 
-create a flink table as the consumer of kafka topic. the DDL is as below:
+## Create a flink table as the consumer of kafka topic. the DDL is as below:
 
 ```sql
 
@@ -89,7 +95,7 @@ id int,
 `ts` TIMESTAMP(3) METADATA FROM 'timestamp' ) WITH (
   'connector' = 'kafka',
   'topic' = 'tutorial.salesdb.order',
-  'properties.bootstrap.servers' = 'b-2.msk4.umcrq8.c4.kafka.cn-north-1.amazonaws.com.cn:9092,b-1.msk4.umcrq8.c4.kafka.cn-north-1.amazonaws.com.cn:9092,b-3.msk4.umcrq8.c4.kafka.cn-north-1.amazonaws.com.cn:9092',
+  'properties.bootstrap.servers' = '<MSK Bootstrap Server Endpoint>',
   'properties.group.id' = 'test-group-001',
   'scan.startup.mode' = 'latest-offset',
   'format' = 'debezium-json',
@@ -97,13 +103,14 @@ id int,
 );
 ```
 
-insert another 2 records into mysql table:
+## Insert another 2 records into mysql table:
+
 ```sql
 insert into `order` (`id`) values('22');
 insert into `order` (`id`) values('23');
 ```
 
-observe from the fink terminal 
+## Bbserve from the fink terminal 
 
 ```sql
 Flink SQL> select * from tb1;
@@ -119,7 +126,7 @@ Flink SQL> select * from tb1;
 | +I |          23 | 2022-04-11 15:02:17.102 |
 ```
 
-create a hudi sink table to write the data into hudi. the DDL of hudi sink table is as below:
+## Create a hudi sink table to write the data into hudi. the DDL of hudi sink table is as below:
 ```sql
 CREATE TABLE flink_hudi_tb_106( 
 id int,
@@ -134,7 +141,7 @@ hh VARCHAR(255)
   'write.operation' = 'upsert',
   'hoodie.datasource.write.recordkey.field' = 'id',
   'hive_sync.enable' = 'true',
-  'hive_sync.metastore.uris' = 'thrift://172.31.24.70:9083',
+  'hive_sync.metastore.uris' = 'thrift://<EMR Cluster Master Node Private IP Address>:9083',
   'hive_sync.table' = 'flink_hudi_tb_106',
   'hive_sync.mode' = 'HMS',
   'hive_sync.username' = 'hadoop',
