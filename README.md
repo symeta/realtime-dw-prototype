@@ -118,3 +118,35 @@ Flink SQL> select * from tb1;
 | +I |          22 | 2022-04-11 15:02:11.085 |
 | +I |          23 | 2022-04-11 15:02:17.102 |
 ```
+
+create a hudi sink table to write the data into hudi. the DDL of hudi sink table is as below:
+```sql
+CREATE TABLE flink_hudi_tb_106( 
+id int,
+ts TIMESTAMP(3),
+logday VARCHAR(255),
+hh VARCHAR(255)
+)PARTITIONED BY (`logday`,`hh`) WITH (
+  'connector' = 'hudi',
+  'path' = 's3://msk-lab-emr-log/hudi/flink_hudi_tb_106/',
+  'table.type' = 'COPY_ON_WRITE',
+  'write.precombine.field' = 'ts',
+  'write.operation' = 'upsert',
+  'hoodie.datasource.write.recordkey.field' = 'id',
+  'hive_sync.enable' = 'true',
+  'hive_sync.metastore.uris' = 'thrift://172.31.24.70:9083',
+  'hive_sync.table' = 'flink_hudi_tb_106',
+  'hive_sync.mode' = 'HMS',
+  'hive_sync.username' = 'hadoop',
+  'hive_sync.partition_fields' = 'logday,hh',
+  'hive_sync.partition_extractor_class' = 'org.apache.hudi.hive.MultiPartKeysValueExtractor'
+);
+```
+the DML of transferring the data is as below:
+
+```sql
+insert into flink_hudi_tb_106 select id,ts,DATE_FORMAT(CURRENT_TIMESTAMP, 'yyyy- MM-dd') as logday, DATE_FORMAT(CURRENT_TIMESTAMP, 'hh') as hh from tb1;
+```
+
+
+
