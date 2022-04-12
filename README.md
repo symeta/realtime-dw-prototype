@@ -8,9 +8,12 @@ Choose "Custom Create" to create the cluster is enough. By default, the broker c
 
 <img width="822" alt="Screen Shot 2022-04-12 at 8 27 10 PM" src="https://user-images.githubusercontent.com/97269758/162962246-afcd2e68-575f-4c7f-ab52-790f1d5e4e9c.png">
 
+*Note: use the custom configuration which enables auto-create topics.*
+
 <img width="836" alt="Screen Shot 2022-04-12 at 8 27 43 PM" src="https://user-images.githubusercontent.com/97269758/162962339-de5ee622-6d3d-4afa-b369-0bbd9a56ca41.png">
 
-make sure that the VPC is the same with the other resources.
+*Note: make sure that the VPC is the same with the other resources.*
+
 <img width="813" alt="Screen Shot 2022-04-12 at 8 28 28 PM" src="https://user-images.githubusercontent.com/97269758/162962456-d33ff108-c29c-4f7f-ba21-7165a06b4f47.png">
 
 <img width="833" alt="Screen Shot 2022-04-12 at 8 29 37 PM" src="https://user-images.githubusercontent.com/97269758/162962653-7a2ec9e6-74a5-44a7-98f6-29f8413fc3a0.png">
