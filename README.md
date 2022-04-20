@@ -63,8 +63,21 @@ sudo docker push {ECR_Repository}/connect-debezium
 We have built the docker image of this connetor in aws ecr. Now, we are going to deploy the image in a pod @EKS cluster.
 
 ```sh
+kubectl create namespace <customer namespace>
+
 kubectl apply -f debezium-mysql-connector.yaml
 ```
 the debezium-mysql-connector.yaml file template could be acquired through the attachement of this blog.
 
+run the following command to check the status of the pod:
 
+```sh
+kubectl get pods -n <custom namespace>
+```
+<img width="712" alt="Screen Shot 2022-04-20 at 8 04 55 PM" src="https://user-images.githubusercontent.com/97269758/164226588-1082d904-e1d2-4073-9e10-7455afc96334.png">
+
+the command to view the logs for possible trouble shooting:
+
+```sh
+
+```
