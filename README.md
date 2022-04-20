@@ -35,3 +35,17 @@ Check whether the strimzi kafka operator has been successfully installed.
 kubectl get csv -n operators
 ```
 <img width="898" alt="Screen Shot 2022-04-20 at 7 37 02 PM" src="https://user-images.githubusercontent.com/97269758/164222168-a9b1a2a9-3c67-4fd6-9393-d201182324da.png">
+
+```sh
+cd /usr/local/bin
+```
+and install Debezium Mysql Kafka Connector.
+
+```sh
+wget https://repo1.maven.org/maven2/io/debezium/debezium-connector-mysql/1.5.0.Final
+/debezium-connector-mysql-1.5.0.Final-plugin.tar.gz
+
+tar -zxvf debezium-connector-mysql-1.5.0.Final-plugin.tar.gz
+```
+
+Build a docker image of this Debuzium Mysql Kafka Connector. The Dockerfile could be acquired through the attachment of this blog.
