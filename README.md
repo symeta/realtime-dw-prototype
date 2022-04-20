@@ -55,9 +55,9 @@ login aws ecr:
 ```sh
 aws ecr get-login --no-include-email
 
-sudo docker build . -t {ECR_Repository}/connect-debezium
+sudo docker build . -t <ECR Repository URI>/connect-debezium
 
-sudo docker push {ECR_Repository}/connect-debezium
+sudo docker push <ECR Repository URI>/connect-debezium
 ```
 
 We have built the docker image of this connetor in aws ecr. Now, we are going to deploy the image in a pod @EKS cluster.
@@ -79,5 +79,39 @@ kubectl get pods -n <custom namespace>
 the command to view the logs for possible trouble shooting:
 
 ```sh
-
+kubectl logs <specific pod name> -n <custom namespace>
 ```
+Make the services running on pod accessible by forwarding the specific port the service (port 8083) is using to the one of the server
+
+```sh
+kubectl port-forward service/debezium-connector-connect-api 8083:8083 -n <custom namespace>
+```
+
+<img width="561" alt="Screen Shot 2022-04-20 at 11 17 14 PM" src="https://user-images.githubusercontent.com/97269758/164264668-a26839cc-1b27-430c-ad2f-37b007279467.png">
+
+check the result of the port forwarding for new terminal
+
+```sh
+curl localhost:8083/connector-plugins
+```
+
+<img width="1596" alt="Screen Shot 2022-04-20 at 11 18 52 PM" src="https://user-images.githubusercontent.com/97269758/164265360-3ba178e9-de6a-40f0-ac3f-5735fa642f07.png">
+
+configure a mysql connector json file, and push the configure to the kafka mysql connector service.
+the mysql-connector.json file could be acquired through the attachment of this blog.
+
+```sh
+cat mysql-connector.json | curl -i -X POST -H "Accept:application/json" -H "Content-Type:application/json" localhost:8083/connectors/ -d @-
+```
+Check the status of the connector
+
+```sh
+curl localhost:8083/connectors/
+```
+
+<img width="459" alt="Screen Shot 2022-04-20 at 11 26 52 PM" src="https://user-images.githubusercontent.com/97269758/164266791-0445f98e-2230-4dbe-bce7-e0d285213106.png">
+
+
+
+
+
