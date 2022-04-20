@@ -49,3 +49,22 @@ tar -zxvf debezium-connector-mysql-1.5.0.Final-plugin.tar.gz
 ```
 
 Build a docker image of this Debuzium Mysql Kafka Connector. The Dockerfile could be acquired through the attachment of this blog.
+
+login aws ecr:
+
+```sh
+aws ecr get-login --no-include-email
+
+sudo docker build . -t {ECR_Repository}/connect-debezium
+
+sudo docker push {ECR_Repository}/connect-debezium
+```
+
+We have built the docker image of this connetor in aws ecr. Now, we are going to deploy the image in a pod @EKS cluster.
+
+```sh
+kubectl apply -f debezium-mysql-connector.yaml
+```
+the debezium-mysql-connector.yaml file template could be acquired through the attachement of this blog.
+
+
