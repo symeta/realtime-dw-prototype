@@ -14,7 +14,13 @@ Finally, these processed CDC data is written into Hudi@EMR cluster.
 
 The architectural diagram for this prototype is as below:
 
+<img width="856" alt="image" src="https://user-images.githubusercontent.com/97269758/162618796-823f3341-f1ce-4dfe-a5e7-d806544033ff.png">
+
+An optimized architecture with reliable debezium connector between mysql instance and MSK cluster is shown as below. The debezium connector in this architecture is running on a pod on an EKS cluster.
+
+<img width="856" alt="image" src="https://user-images.githubusercontent.com/97269758/164218114-7f39fcf2-cf15-433f-90a0-9f9105364c63.png">
+
 **The rest of this document discuss the provisioning of the relevant resources needed for this prototype. Please make sure that all the resources created are sitting in the same VPC.**
 
-<img width="856" alt="image" src="https://user-images.githubusercontent.com/97269758/162618796-823f3341-f1ce-4dfe-a5e7-d806544033ff.png">
+
 
