@@ -8,4 +8,4 @@
 - [5.2 Set up Debezium Connector in a pod @EKS cluster](https://github.com/symeta/realtime-dw-prototype/tree/Set-up-Debezium-Connector-in-a-pod-%40EKS-cluster)
 - [6. Validate the connection between Mysql Instance and MSK cluster (MSK Producer)](https://github.com/symeta/realtime-dw-prototype/tree/Validate-the-connection-between-Mysql-Instance-and-MSK-cluster-(MSK-Producer))
 - [7. Validate the connection between MSK cluster and Hudi (MSK consumer via flink@emr)](https://github.com/symeta/realtime-dw-prototype/tree/Validate-the-connection-between-MSK-cluster-and-Hudi-(MSK-consumer-via-flink%40emr))
-- [8. Kafka Client Commands]()
+- [8. Kafka Client Commands](https://github.com/symeta/realtime-dw-prototype/tree/Kafka-Client-Commands)
