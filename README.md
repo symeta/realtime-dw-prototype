@@ -110,7 +110,7 @@ insert into `order` (`id`) values('22');
 insert into `order` (`id`) values('23');
 ```
 
-## Bbserve from the fink terminal 
+## Observe from the fink terminal 
 
 ```sql
 Flink SQL> select * from tb1;
